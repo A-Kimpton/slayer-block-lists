@@ -28,8 +28,7 @@ follows the same tick.
 
 ## Privacy
 
-Reads game state only (vars and the game's own data tables). Nothing is written anywhere, and
-nothing leaves your machine.
+Reads game state only (vars and the game's own data tables).
 
 ## Building
 
