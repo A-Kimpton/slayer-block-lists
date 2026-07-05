@@ -1,6 +1,6 @@
 # Slayer Block Lists
 
-A RuneLite plugin that shows your slayer block list for **every** master in a side panel — not just
+A RuneLite plugin that shows your slayer block list for **every** master in a side panel, not just
 the one you're standing next to. Blocked creatures, masters and your current task are all buttons
 that open the right OSRS Wiki page.
 
@@ -12,18 +12,18 @@ If you enjoy my work, feel free to buy me a coffee:
 
 ## Features
 
-- **Per-master block lists** — Turael, Mazchna, Vannaka, Chaeldar, Konar, Nieve, Duradel and
+- **Per-master block lists** - Turael, Mazchna, Vannaka, Chaeldar, Konar, Nieve, Duradel and
   Krystilia, each with all seven block slots.
-- **Wiki links everywhere** — every blocked creature, the current task and each master name opens
+- **Wiki links everywhere** - every blocked creature, the current task and each master name opens
   its OSRS Wiki page.
-- **Empty & locked slots** — unlocked-but-unused slots are shown, and locked ones say what unlocks
-  them (slot N needs N×50 quest points; the seventh slot needs the Elite Lumbridge & Draynor
+- **Empty & locked slots** - unlocked-but-unused slots are shown, and locked ones say what unlocks
+  them (slot N needs N x 50 quest points; the seventh slot needs the Elite Lumbridge & Draynor
   diary). Both can be hidden in the config.
-- **Current task** — your active assignment with the remaining count, assigning master, and
+- **Current task** - your active assignment with the remaining count, assigning master, and
   Konar's required kill location when applicable.
 - **Slayer points & task streak** at the top.
 
-Everything updates live as you play — block a task, skip one, or gain quest points and the panel
+Everything updates live as you play - block a task, skip one, or gain quest points and the panel
 follows the same tick.
 
 ## Privacy

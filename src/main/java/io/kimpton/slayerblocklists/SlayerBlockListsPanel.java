@@ -26,7 +26,7 @@ import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
 
 /** The Slayer Block Lists side panel: slayer points/streak, the current task,
- *  and every master's block list — blocked creatures as wiki-linked buttons,
+ *  and every master's block list: blocked creatures as wiki-linked buttons,
  *  with empty and locked slots (and what unlocks them). Text wraps; the panel
  *  only ever scrolls vertically. */
 class SlayerBlockListsPanel extends PluginPanel
@@ -34,7 +34,7 @@ class SlayerBlockListsPanel extends PluginPanel
 	private static final String COFFEE_URL = "https://buymeacoffee.com/kimpton";
 	private static final String WIKI_SEARCH = "https://oldschool.runescape.wiki/w/Special:Search?search=";
 
-	private final JLabel pointsLabel = label("—", ColorScheme.LIGHT_GRAY_COLOR);
+	private final JLabel pointsLabel = label("-", ColorScheme.LIGHT_GRAY_COLOR);
 	private final JPanel taskSection = column();
 	private final JPanel blocksSection = column();
 	private final JScrollPane scroll;
@@ -89,7 +89,7 @@ class SlayerBlockListsPanel extends PluginPanel
 	 *  fingerprints them, so routine ticks never rebuild or blink). */
 	void update(SlayerData.Model m)
 	{
-		pointsLabel.setText(String.format("Points: %,d   ·   Streak: %,d", m.points, m.streak));
+		pointsLabel.setText(String.format("Points: %,d   |   Streak: %,d", m.points, m.streak));
 
 		taskSection.removeAll();
 		if (m.showCurrentTask)
@@ -98,7 +98,7 @@ class SlayerBlockListsPanel extends PluginPanel
 			if (m.task != null)
 			{
 				String name = m.task.name != null ? m.task.name : "Task";
-				String line = m.task.remaining + "× " + name
+				String line = m.task.remaining + "x " + name
 					+ (m.task.master != null ? "  (" + m.task.master + ")" : "");
 				// html body + uncapped height so a long task line wraps instead
 				// of clipping (plain buttons render one line only).
@@ -151,12 +151,12 @@ class SlayerBlockListsPanel extends PluginPanel
 			{
 				if (m.showLockedSlots)
 				{
-					blocksSection.add(slotNote("🔒 Diary slot — Elite Lumbridge & Draynor"));
+					blocksSection.add(slotNote("🔒 Diary slot - Elite Lumbridge & Draynor"));
 				}
 			}
 			else if (m.showEmptySlots)
 			{
-				blocksSection.add(slotNote("Diary slot — empty"));
+				blocksSection.add(slotNote("Diary slot - empty"));
 			}
 			return;
 		}
@@ -165,12 +165,12 @@ class SlayerBlockListsPanel extends PluginPanel
 		{
 			if (m.showLockedSlots)
 			{
-				blocksSection.add(slotNote("🔒 Slot " + slot.slot + " — " + need + " quest points"));
+				blocksSection.add(slotNote("🔒 Slot " + slot.slot + " - " + need + " quest points"));
 			}
 		}
 		else if (m.showEmptySlots)
 		{
-			blocksSection.add(slotNote("Slot " + slot.slot + " — empty"));
+			blocksSection.add(slotNote("Slot " + slot.slot + " - empty"));
 		}
 	}
 

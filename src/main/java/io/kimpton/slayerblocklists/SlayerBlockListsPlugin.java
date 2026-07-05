@@ -102,7 +102,7 @@ public class SlayerBlockListsPlugin extends Plugin
 		SlayerData.Model model = slayerData.collect(config);
 		if (model.namesPending)
 		{
-			// A creature name didn't resolve yet (cache tables still loading) —
+			// A creature name didn't resolve yet (cache tables still loading);
 			// leave the fingerprint stale so next tick retries the lookup.
 			lastFingerprint = null;
 		}
