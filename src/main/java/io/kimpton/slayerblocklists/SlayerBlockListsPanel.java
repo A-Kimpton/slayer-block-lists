@@ -70,7 +70,7 @@ class SlayerBlockListsPanel extends PluginPanel
 		content.add(pointsLabel);
 		content.add(Box.createVerticalStrut(8));
 
-		taskSection.add(label("Log in to load your block lists.", ColorScheme.MEDIUM_GRAY_COLOR));
+		taskSection.add(label("<html>Log in to load your block lists.</html>", ColorScheme.MEDIUM_GRAY_COLOR));
 		content.add(taskSection);
 		content.add(blocksSection);
 
@@ -110,7 +110,7 @@ class SlayerBlockListsPanel extends PluginPanel
 			}
 			else
 			{
-				taskSection.add(label("No task assigned.", ColorScheme.MEDIUM_GRAY_COLOR));
+				taskSection.add(label("<html>No task assigned.</html>", ColorScheme.MEDIUM_GRAY_COLOR));
 			}
 			taskSection.add(Box.createVerticalStrut(8));
 		}
@@ -206,9 +206,11 @@ class SlayerBlockListsPanel extends PluginPanel
 		}
 	}
 
+	/** An indented note line. Rendered as html so long text (Konar's location,
+	 *  the diary-slot requirement) wraps instead of clipping at the panel edge. */
 	private JLabel slotNote(String text)
 	{
-		JLabel l = label(text, ColorScheme.MEDIUM_GRAY_COLOR);
+		JLabel l = label("<html>" + text + "</html>", ColorScheme.MEDIUM_GRAY_COLOR);
 		l.setBorder(BorderFactory.createEmptyBorder(1, 8, 1, 0));
 		return l;
 	}
