@@ -100,8 +100,11 @@ class SlayerBlockListsPanel extends PluginPanel
 				String name = m.task.name != null ? m.task.name : "Task";
 				String line = m.task.remaining + "× " + name
 					+ (m.task.master != null ? "  (" + m.task.master + ")" : "");
-				JButton t = linkButton(line, wikiSearchUrl(name));
+				// html body + uncapped height so a long task line wraps instead
+				// of clipping (plain buttons render one line only).
+				JButton t = linkButton("<html>" + line + "</html>", wikiSearchUrl(name));
 				t.setBorder(BorderFactory.createEmptyBorder(1, 0, 1, 2));
+				t.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 				taskSection.add(t);
 				if (m.task.area != null)
 				{
