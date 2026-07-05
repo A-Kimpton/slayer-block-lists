@@ -6,11 +6,20 @@ that open the right OSRS Wiki page.
 
 This plugin is largely designed for me for a personal project, but I can see this type of tool is likely useful to others as well. If you have any suggestions, please open an issue or PR.
 
-<p align="center"><img src="screenshot.png" alt="Slayer Block Lists side panel" width="260"></p>
+<table>
+<tr>
+<td width="280"><img src="screenshot.png" alt="Slayer Block Lists side panel" width="260"></td>
+<td valign="top">
+
+Every slayer master's block list in one side panel. A current-task card and your points/streak sit up top, then a collapsible card per master; the master who gave your current task is highlighted and opened automatically.
 
 If you enjoy my work, feel free to buy me a coffee:
 
 <a href="https://www.buymeacoffee.com/kimpton" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+</td>
+</tr>
+</table>
 
 ## Features
 
