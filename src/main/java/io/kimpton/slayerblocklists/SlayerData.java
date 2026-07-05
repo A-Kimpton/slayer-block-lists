@@ -60,6 +60,11 @@ class SlayerData
 		null, "Turael", "Mazchna", "Vannaka", "Chaeldar", "Nieve", "Duradel", "Krystilia", "Konar quo Maten",
 	};
 
+	// SLAYER_MASTER varbit value -> block-list display key (matches MASTER_NAMES).
+	private static final String[] MASTER_KEY_BY_ID = {
+		null, "Turael", "Mazchna", "Vannaka", "Chaeldar", "Nieve", "Duradel", "Krystilia", "Konar",
+	};
+
 	@Inject
 	private Client client;
 
@@ -79,6 +84,7 @@ class SlayerData
 		boolean showLockedSlots;
 		boolean showEmptySlots;
 		Task task; // null = no active task
+		String activeMaster; // display key of the master who gave the current task (null = none)
 		// master display name -> 7 slots (slot 1..6 then the diary slot, slot=0)
 		final Map<String, List<Slot>> masters = new LinkedHashMap<>();
 		boolean namesPending;
@@ -134,6 +140,7 @@ class SlayerData
 			t.remaining = remaining;
 			int masterId = client.getVarbitValue(VarbitID.SLAYER_MASTER);
 			t.master = masterId > 0 && masterId < ASSIGNING_MASTER.length ? ASSIGNING_MASTER[masterId] : null;
+			m.activeMaster = masterId > 0 && masterId < MASTER_KEY_BY_ID.length ? MASTER_KEY_BY_ID[masterId] : null;
 			t.area = areaName(client.getVarpValue(VarPlayerID.SLAYER_AREA));
 			m.task = t;
 			if (t.name == null)
