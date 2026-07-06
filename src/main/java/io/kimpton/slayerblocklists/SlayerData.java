@@ -56,13 +56,15 @@ class SlayerData
 	static final int BLOCK_VARBITS_TOTAL = 8 * 7;
 
 	// SLAYER_MASTER varbit value -> assigning master. 0 = no master assigned.
+	// Ordered by when each master was added to the game, NOT by combat level: the
+	// four originals then Duradel(5), then Nieve(6)/Krystilia(7)/Konar(8).
 	private static final String[] ASSIGNING_MASTER = {
-		null, "Turael", "Mazchna", "Vannaka", "Chaeldar", "Nieve", "Duradel", "Krystilia", "Konar quo Maten",
+		null, "Turael", "Mazchna", "Vannaka", "Chaeldar", "Duradel", "Nieve", "Krystilia", "Konar quo Maten",
 	};
 
 	// SLAYER_MASTER varbit value -> block-list display key (matches MASTER_NAMES).
 	private static final String[] MASTER_KEY_BY_ID = {
-		null, "Turael", "Mazchna", "Vannaka", "Chaeldar", "Nieve", "Duradel", "Krystilia", "Konar",
+		null, "Turael", "Mazchna", "Vannaka", "Chaeldar", "Duradel", "Nieve", "Krystilia", "Konar",
 	};
 
 	@Inject
