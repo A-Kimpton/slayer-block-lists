@@ -155,7 +155,13 @@ class MasterSection extends JPanel
 		{
 			return m.diaryDone;
 		}
-		return m.questPoints >= s.slot * 50;
+		// Points-bought slots (Mortimer) stay available whether or not you can
+		// currently afford one, so only the quest-point gate can lock a slot.
+		if (s.pointCost > 0)
+		{
+			return true;
+		}
+		return m.questPoints >= s.slot * SlayerData.QP_PER_SLOT;
 	}
 
 	private void addSlotRow(SlayerData.Model m, SlayerData.Model.Slot slot)
@@ -181,7 +187,18 @@ class MasterSection extends JPanel
 			}
 			return;
 		}
-		int need = slot.slot * 50;
+		// Mortimer sells his slots outright rather than gating them on quest
+		// points, and nothing in the varbits says whether one has been bought —
+		// so show the price instead of a lock we can't verify.
+		if (slot.pointCost > 0)
+		{
+			if (m.showEmptySlots)
+			{
+				body.add(note("Slot " + slot.slot + " - empty (" + slot.pointCost + " slayer points)"));
+			}
+			return;
+		}
+		int need = slot.slot * SlayerData.QP_PER_SLOT;
 		if (m.questPoints < need)
 		{
 			if (m.showLockedSlots)
