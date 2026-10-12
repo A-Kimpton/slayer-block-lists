@@ -81,10 +81,10 @@ class SlayerBlockListsPanel extends PluginPanel
 		data.add(buildStatChips());
 		data.add(Box.createVerticalStrut(10));
 		data.add(sectionTitle("Block lists"));
-		for (String master : SlayerData.MASTER_NAMES)
+		for (SlayerData.MasterDef def : SlayerData.MASTERS)
 		{
-			MasterSection s = new MasterSection(master);
-			sections.put(master, s);
+			MasterSection s = new MasterSection(def.key);
+			sections.put(def.key, s);
 			data.add(s);
 		}
 		data.setVisible(false);

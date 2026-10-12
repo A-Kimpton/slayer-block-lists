@@ -23,7 +23,7 @@ import net.runelite.client.util.ImageUtil;
 @PluginDescriptor(
 	name = "Slayer Block Lists",
 	description = "Shows your slayer block list for every master: blocked creatures as wiki links, plus empty and locked slots with their unlock requirements.",
-	tags = {"slayer", "block", "blocklist", "task", "master", "konar", "duradel", "nieve", "krystilia"}
+	tags = {"slayer", "block", "blocklist", "task", "master", "konar", "duradel", "nieve", "krystilia", "mortimer"}
 )
 public class SlayerBlockListsPlugin extends Plugin
 {
