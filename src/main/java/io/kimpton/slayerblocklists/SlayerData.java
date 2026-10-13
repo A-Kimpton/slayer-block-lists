@@ -27,11 +27,6 @@ class SlayerData
 	/** Slayer points Mortimer charges for each of his two block slots. */
 	static final int MORTIMER_SLOT_POINTS = 120;
 
-	// SLAYER_MASTER values that keep their own streak counter rather than moving
-	// SLAYER_TASKS_COMPLETED. Named after RuneLite's own Slayer plugin constants.
-	private static final int KRYSTILIA_MASTER_ID = 7;
-	private static final int MORTIMER_MASTER_ID = 10;
-
 	/** A master's block list: its slot varbits, whether it has the achievement
 	 *  diary bonus slot, and how its purchasable slots are paid for. */
 	static final class MasterDef
@@ -149,7 +144,14 @@ class SlayerData
 	static class Model
 	{
 		int points;
+		// Three independent counters, none of which feeds the others: the standard
+		// masters move `streak`, Krystilia moves `wildernessStreak`, and Mortimer
+		// moves `mortimerTasks`. Each gets its own chip, so all three are visible
+		// whichever task is open — and Mortimer's is a progression counter, not a
+		// points streak: his milestones don't exist.
 		int streak;
+		int wildernessStreak;
+		int mortimerTasks;
 		int questPoints;
 		boolean diaryDone;
 		boolean showCurrentTask;
@@ -202,7 +204,9 @@ class SlayerData
 		Model m = new Model();
 		int masterId = client.getVarbitValue(VarbitID.SLAYER_MASTER);
 		m.points = client.getVarbitValue(VarbitID.SLAYER_POINTS);
-		m.streak = streakFor(masterId);
+		m.streak = client.getVarbitValue(VarbitID.SLAYER_TASKS_COMPLETED);
+		m.wildernessStreak = client.getVarbitValue(VarbitID.SLAYER_WILDERNESS_TASKS_COMPLETED);
+		m.mortimerTasks = client.getVarpValue(VarPlayerID.SLAYER_MORTIMER_TASKS_COMPLETED);
 		m.questPoints = client.getVarpValue(VarPlayerID.QP);
 		m.diaryDone = client.getVarbitValue(VarbitID.LUMBRIDGE_DIARY_ELITE_COMPLETE) > 0;
 		m.showCurrentTask = config.showCurrentTask();
@@ -240,23 +244,6 @@ class SlayerData
 			m.masters.put(def.key, slots);
 		}
 		return m;
-	}
-
-	/** The task streak for the master currently assigning, which is not always
-	 *  SLAYER_TASKS_COMPLETED: Krystilia and Mortimer each count separately, and
-	 *  their tasks leave the shared counter untouched. Mirrors RuneLite's Slayer
-	 *  plugin, so the chip agrees with the in-game task infobox. */
-	private int streakFor(int masterId)
-	{
-		switch (masterId)
-		{
-			case KRYSTILIA_MASTER_ID:
-				return client.getVarbitValue(VarbitID.SLAYER_WILDERNESS_TASKS_COMPLETED);
-			case MORTIMER_MASTER_ID:
-				return client.getVarpValue(VarPlayerID.SLAYER_MORTIMER_TASKS_COMPLETED);
-			default:
-				return client.getVarbitValue(VarbitID.SLAYER_TASKS_COMPLETED);
-		}
 	}
 
 	private Model.Slot readSlot(Model m, int slotNumber, int varbit, int pointCost)

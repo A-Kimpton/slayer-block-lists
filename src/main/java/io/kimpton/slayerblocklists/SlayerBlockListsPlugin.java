@@ -117,7 +117,7 @@ public class SlayerBlockListsPlugin extends Plugin
 	/** Every var the panel renders, in one comparable array. */
 	private int[] fingerprint()
 	{
-		int[] fp = new int[SlayerData.BLOCK_VARBITS_TOTAL + 8];
+		int[] fp = new int[SlayerData.BLOCK_VARBITS_TOTAL + 10];
 		int i = SlayerData.fillBlockVarbits(client, fp);
 		fp[i++] = client.getVarpValue(VarPlayerID.QP);
 		fp[i++] = client.getVarbitValue(VarbitID.LUMBRIDGE_DIARY_ELITE_COMPLETE);
@@ -126,7 +126,11 @@ public class SlayerBlockListsPlugin extends Plugin
 		fp[i++] = client.getVarpValue(VarPlayerID.SLAYER_AREA);
 		fp[i++] = client.getVarbitValue(VarbitID.SLAYER_MASTER);
 		fp[i++] = client.getVarbitValue(VarbitID.SLAYER_POINTS);
-		fp[i] = client.getVarbitValue(VarbitID.SLAYER_TASKS_COMPLETED);
+		fp[i++] = client.getVarbitValue(VarbitID.SLAYER_TASKS_COMPLETED);
+		// Krystilia's and Mortimer's counters are shown too, so a change in either
+		// has to trigger a rebuild on its own.
+		fp[i++] = client.getVarbitValue(VarbitID.SLAYER_WILDERNESS_TASKS_COMPLETED);
+		fp[i] = client.getVarpValue(VarPlayerID.SLAYER_MORTIMER_TASKS_COMPLETED);
 		return fp;
 	}
 }
