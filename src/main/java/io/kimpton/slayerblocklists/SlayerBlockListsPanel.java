@@ -53,6 +53,8 @@ class SlayerBlockListsPanel extends PluginPanel
 	// Stat chips.
 	private final JLabel pointsValue = statValue();
 	private final JLabel streakValue = statValue();
+	private final JLabel wildernessValue = statValue();
+	private final JLabel mortimerValue = statValue();
 
 	// One card per master, created once and updated in place.
 	private final Map<String, MasterSection> sections = new LinkedHashMap<>();
@@ -145,15 +147,20 @@ class SlayerBlockListsPanel extends PluginPanel
 		taskCard.add(col, BorderLayout.CENTER);
 	}
 
+	/** Points plus the three task counters, 2x2. They're separate counters that
+	 *  never feed each other, so showing only the active one hides the other two —
+	 *  and "streak" alone doesn't say which of them you're looking at. */
 	private JPanel buildStatChips()
 	{
-		JPanel row = new JPanel(new GridLayout(1, 2, 6, 0));
-		row.setOpaque(false);
-		row.setAlignmentX(Component.LEFT_ALIGNMENT);
-		row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 48));
-		row.add(chip(pointsValue, "points"));
-		row.add(chip(streakValue, "streak"));
-		return row;
+		JPanel grid = new JPanel(new GridLayout(2, 2, 6, 6));
+		grid.setOpaque(false);
+		grid.setAlignmentX(Component.LEFT_ALIGNMENT);
+		grid.setMaximumSize(new Dimension(Integer.MAX_VALUE, 102));
+		grid.add(chip(pointsValue, "points"));
+		grid.add(chip(streakValue, "streak"));
+		grid.add(chip(wildernessValue, "wildy"));
+		grid.add(chip(mortimerValue, "mortimer"));
+		return grid;
 	}
 
 	private JPanel chip(JLabel value, String caption)
@@ -215,6 +222,8 @@ class SlayerBlockListsPanel extends PluginPanel
 
 		pointsValue.setText(String.format("%,d", m.points));
 		streakValue.setText(String.format("%,d", m.streak));
+		wildernessValue.setText(String.format("%,d", m.wildernessStreak));
+		mortimerValue.setText(String.format("%,d", m.mortimerTasks));
 
 		for (Map.Entry<String, List<SlayerData.Model.Slot>> e : m.masters.entrySet())
 		{
